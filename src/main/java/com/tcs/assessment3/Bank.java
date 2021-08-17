@@ -131,18 +131,66 @@ public class Bank {
 			String choice = sc.nextLine();
 			if (choice.equalsIgnoreCase("withdraw"))
 				withdrawSavings();
+			else if(choice.equalsIgnoreCase("deposit")){
+				depositSavings();
+			}
 
 		} else if (accountType.equalsIgnoreCase("current")) {
 			current = new Current("Aneesh", "thane", "mh", 4545, 345435, "street", "current", 200, new Date(),
 					"active");
-			withdrawCurrent();
+			Scanner sc1 = new Scanner(System.in);
+			logger.debug("Do you want to withdraw or deposit?");
+			String choice = sc.nextLine();
+			if (choice.equalsIgnoreCase("withdraw"))
+				withdrawCurrent();
+			else if(choice.equalsIgnoreCase("deposit")){
+				depositCurrent();
+			}
 
 		} else if (accountType.equalsIgnoreCase("demat")) {
 			demat = new Demat("Aneesh", "thane", "mh", 4545, 345435, "street", "demat", 700, new Date(), "active");
-			withdrawDemat();
+			Scanner sc1 = new Scanner(System.in);
+			logger.debug("Do you want to withdraw or deposit?");
+			String choice = sc.nextLine();
+			if (choice.equalsIgnoreCase("withdraw"))
+				withdrawDemat();
+			else if(choice.equalsIgnoreCase("deposit")){
+				depositDemat();
+			}
 
 		}
 
+	}
+
+	private static void depositSavings() {
+		Scanner sc = new Scanner(System.in);
+		logger.debug("Enter deposit amount");
+		float depositAmount = sc.nextFloat();
+		float oldBalance = savings.getBalanceAmount();
+		float newBalance = oldBalance + depositAmount;
+		savings.setBalanceAmount(newBalance);
+		logger.debug("Balance={}", savings.getBalanceAmount());
+	}
+
+	private static void depositCurrent() {
+		Scanner sc = new Scanner(System.in);
+		logger.debug("Enter deposit amount");
+		float depositAmount = sc.nextFloat();
+		float oldBalance = current.getBalanceAmount();
+		float newBalance = oldBalance + depositAmount;
+		current.setBalanceAmount(newBalance);
+		logger.debug("Balance={}", current.getBalanceAmount());
+	}
+
+	private static void depositDemat() {
+		Scanner sc = new Scanner(System.in);
+		logger.debug("Enter deposit amount");
+		float depositAmount = sc.nextFloat();
+		float oldBalance = demat.getBalanceAmount();
+		float newBalance = oldBalance + depositAmount;
+		demat.setBalanceAmount(newBalance);
+		logger.debug("Balance={}", demat.getBalanceAmount());
+		
 	}
 
 	private static void withdrawSavings() {
