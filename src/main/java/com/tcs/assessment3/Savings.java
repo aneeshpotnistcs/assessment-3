@@ -10,16 +10,25 @@ public class Savings extends Bank {
 	private long phoneNumber;
 	private String street;
 	private String accountType;
-	private float balanceAmount = 100L;
+	private float balanceAmount;
 	private Date createdDate;
 	private String status;
 
 	public Savings(String ownerName, String city, String state, int houseNumber, long phoneNumber, String street,
 			String accountType, float balanceAmount, Date createdDate, String status) {
 		super(ownerName, city, state, houseNumber, phoneNumber, street, accountType, balanceAmount, createdDate,
-				status);
-
+				status);		
+		this.city = city;
+		this.state = state;
+		this.houseNumber = houseNumber;
+		this.phoneNumber = phoneNumber;
+		this.street = street;
+		this.accountType = accountType;
+		this.balanceAmount = balanceAmount;
+		this.createdDate = createdDate;
+		this.status = status;
 	}
+	
 
 	@Override
 	public String getOwnerName() {

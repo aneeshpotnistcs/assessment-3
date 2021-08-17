@@ -14,7 +14,7 @@ public class Bank {
 	private long phoneNumber;
 	private String street;
 	private String accountType;
-	private float balanceAmount = 100L;
+	private float balanceAmount;
 	private Date createdDate;
 	private String status;
 
@@ -22,14 +22,11 @@ public class Bank {
 	private static Current current;
 	private static Demat demat;
 	
-	private String balanceMessage="Not enough balance";
 
-
-	private static final Logger logger = LoggerFactory.getLogger(Account.class);
+	private static final Logger logger = LoggerFactory.getLogger(Bank.class);
 
 	public Bank(String ownerName, String city, String state, int houseNumber, long phoneNumber, String street,
 			String accountType, float balanceAmount, Date createdDate, String status) {
-		super();
 		this.ownerName = ownerName;
 		this.city = city;
 		this.state = state;
@@ -127,17 +124,21 @@ public class Bank {
 		logger.debug("Select the type of account");
 		String accountType = sc.nextLine();
 		if (accountType.equalsIgnoreCase("savings")) {
-			savings = new Savings("Aneesh", "thane", "mh", 4545, 345435, "street", "savings", 100L, new Date(),
+			savings = new Savings("Aneesh", "thane", "mh", 4545, 345435, "street", "savings", 1000, new Date(),
 					"active");
-			withdrawSavings();
+			Scanner sc1 = new Scanner(System.in);
+			logger.debug("Do you want to withdraw or deposit?");
+			String choice = sc.nextLine();
+			if (choice.equalsIgnoreCase("withdraw"))
+				withdrawSavings();
 
 		} else if (accountType.equalsIgnoreCase("current")) {
-			current = new Current("Aneesh", "thane", "mh", 4545, 345435, "street", "current", 200L, new Date(),
+			current = new Current("Aneesh", "thane", "mh", 4545, 345435, "street", "current", 200, new Date(),
 					"active");
 			withdrawCurrent();
 
 		} else if (accountType.equalsIgnoreCase("demat")) {
-			current = new Current("Aneesh", "thane", "mh", 4545, 345435, "street", "demat", 200L, new Date(), "active");
+			demat = new Demat("Aneesh", "thane", "mh", 4545, 345435, "street", "demat", 700, new Date(), "active");
 			withdrawDemat();
 
 		}
